@@ -91,7 +91,7 @@ const Login = () => {
         </form>
         
         <p className="mt-6 text-center text-gray-600">
-          ليس لديك حساب؟ <a href="/register" className="text-[#940066] hover:text-[#671F79] font-medium">إنشاء حساب</a>
+          ليس لديك حساب؟ <a href="/signup" className="text-[#940066] hover:text-[#671F79] font-medium">إنشاء حساب</a>
         </p>
       </div>
     </div>
