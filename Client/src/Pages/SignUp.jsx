@@ -71,7 +71,7 @@ const Register = () => {
     try {
       await axios.post("http://localhost:4000/api/register", formData);
       alert("تم التسجيل بنجاح! الرجاء تسجيل الدخول.");
-      navigate("/login");
+      navigate("/signin");
     } catch (err) {
       setError(err.response?.data?.message || "فشل التسجيل");
     }
