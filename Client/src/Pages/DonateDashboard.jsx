@@ -5,12 +5,12 @@ import { FiMenu, FiBell, FiUser ,FiHome ,FiArrowLeft  ,FiHelpCircle } from "reac
 import { FaHandHoldingHeart, FaChartPie} from "react-icons/fa";
 import axios from "axios";
 import { FiArrowRight } from "react-icons/fi";
+import { useParams } from "react-router-dom";
 
 
-
-
-function DonateDashboard({donorId} ) {
+function DonateDashboard({} ) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const { id } = useParams(); // جلب id من الرابط
 
 
 //=========================================================== ربط سيكشن  1+2
@@ -23,11 +23,11 @@ useEffect(() => {
   const fetchDashboardData = async () => {
     try {
   // جلب قائمة التبرعات
-  const donationsResponse = await axios.get(`http://localhost:4000/api/donors/donations/${donorId}`);
+  const donationsResponse = await axios.get(`http://localhost:4000/api/donors/donations/${id}`);
   // جلب إجمالي التبرعات
-  const totalResponse = await axios.get(`http://localhost:4000/api/donors/donations/total/${donorId}`)
+  const totalResponse = await axios.get(`http://localhost:4000/api/donors/donations/total/${id}`)
   // جلب متوسط التبرعات
-  const averageResponse = await axios.get(`http://localhost:4000/api/donors/donations/average/${donorId}`)
+  const averageResponse = await axios.get(`http://localhost:4000/api/donors/donations/average/${id}`)
   console.log("Donations Data:", donationsResponse.data);
   console.log("Total Donations:", totalResponse.data);
   console.log("Average Donation:", averageResponse.data);
@@ -40,7 +40,7 @@ useEffect(() => {
   };
 
   fetchDashboardData();
-}, [donorId]);
+}, [id]);
 
 
 // ==============================================اليوزير بروفايل 
@@ -55,7 +55,7 @@ useEffect(() => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/donors/profile/${donorId}`);
+        const response = await axios.get(`http://localhost:4000/api/donors/profile/${id}`);
         console.log("Profile Data:", response.data);
         setProfile({
           name: response.data.firstName,
@@ -67,7 +67,7 @@ useEffect(() => {
       }
     };
     fetchProfile();
-  }, [donorId]);
+  }, [id]);
 
   const handleChange = (e) => {
     setProfile({
@@ -83,7 +83,8 @@ useEffect(() => {
   const handleSave = async (field) => {
     try {
       const updatedData = { [field]: profile[field] };
-      await axios.put(`http://localhost:4000/api/donors/update-profile/${donorId}`, updatedData);
+      await axios.put(`http://localhost:4000/api/donors/update-profile/${id}`, updatedData);
+
       alert("تم تحديث البيانات بنجاح!");
       setEditField(null); // إرجاع الحقل لوضع العرض بعد الحفظ
     } catch (error) {

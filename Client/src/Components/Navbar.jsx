@@ -87,7 +87,8 @@ const Navbar = () => {
             <div className="flex items-center space-x-3">
               {/* الرابط الديناميكي لأيقونة المستخدم */}
               <Link
-                to={user.role === "donor" ? "/dashboard/donate" : "/profile"}
+                to={user.role === "donor" ? `/dashboard/donate/${user.id}` : "/profile"}
+
                 className="text-[#940066] hover:text-[#b00077] transition-all"
               >
                 <FaUser className="text-xl" />
