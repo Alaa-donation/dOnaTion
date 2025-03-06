@@ -18,7 +18,7 @@ import ScholarshipTerms from "./Pages/ScholarshipTerms";
 
 function Layout() {
   const location = useLocation();
-  const hideNavbarFooterPaths = ["/signin", "/signUp", "/dashboard/admin" ,"/dashboard/donate"]; // الصفحات التي نريد إخفاء الـ Navbar والـ Footer فيها
+  const hideNavbarFooterPaths = ["/signin", "/signUp", "/dashboard/admin" ,"/dashboard/donate/:id"]; // الصفحات التي نريد إخفاء الـ Navbar والـ Footer فيها
 
   return (
     <>
@@ -32,7 +32,7 @@ function Layout() {
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/BeneficiaryForm" element={<BeneficiaryForm />} />
         <Route path="/donate" element={<DonationPage />} />
-        <Route path="/dashboard/donate" element={<DonateDashboard donorId="2" />} />
+        <Route path="/dashboard/donate/:id" element={<DonateDashboard  />} />
         <Route path="/dashboard/admin" element={<AdminDashboard />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/Detailspage/:id" element={<DetailsPage />} />
