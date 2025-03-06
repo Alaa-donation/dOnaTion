@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2"; // استيراد sweetalert2
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -70,7 +71,14 @@ const Register = () => {
     // إذا كانت جميع البيانات صحيحة، نقوم بإرسالها للخادم
     try {
       await axios.post("http://localhost:4000/api/register", formData);
-      alert("تم التسجيل بنجاح! الرجاء تسجيل الدخول.");
+            // عرض رسالة نجاح باستخدام SweetAlert
+            Swal.fire({
+              icon: "success",
+              title: "تم التسجيل بنجاح ",
+              text: "الر جاء تسجيل الدخول",
+              confirmButtonText: "موافق",
+            });
+      
       navigate("/signin");
     } catch (err) {
       setError(err.response?.data?.message || "فشل التسجيل");

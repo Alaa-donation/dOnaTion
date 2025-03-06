@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2"; // استيراد sweetalert2
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -28,7 +29,13 @@ function Contact() {
       );
 
       // عرض تنبيه عند نجاح الإرسال
-      alert("تم إرسال الرسالة بنجاح!");
+           // عرض رسالة نجاح باستخدام SweetAlert
+      Swal.fire({
+        icon: "success",
+        title: "تم ارسال الرسالة بنجاح",
+        text: "انتظر وصول الرد على بريدك الالكتروني",
+        confirmButtonText: "موافق",
+      });
 
       // تفريغ الفورم
       setFormData({ name: "", email: "", description: "" });
